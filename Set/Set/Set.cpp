@@ -4,6 +4,7 @@ namespace SET
 {
 	Set::Set(){
 		size = 0;
+		
 		arr = new int;
 	}
 	Set::Set(int arr1[], int length){
