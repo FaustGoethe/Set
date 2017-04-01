@@ -4,7 +4,6 @@ namespace SET
 {
 	Set::Set(){
 		size = 0;
-		
 		arr = new int;
 	}
 	Set::Set(int arr1[], int length){
@@ -17,7 +16,7 @@ namespace SET
 			arr[i] = temp;
 		}
 	}
-	Set::Set(const Set& cp){
+	Set::Set(Set& cp){
 		size = cp.size;
 		int temp = 0;
 		for(int i(0); i < size; i++){
@@ -38,16 +37,17 @@ namespace SET
 	}
 	Set Set::collaboration(const Set& coll){
 		int result_size = size + coll.size;
-		int mediator[result_size];
+		int* mediator = new int[result_size];
 		
 		for(int i(0); i < size; i++)
 			for(int j(0); j < coll.size; j++){
-				if(arr[i] < coll.arr[j])
-					mediator[i] = arr[i]
+				if (arr[i] < coll.arr[j])
+					mediator[i] = arr[i];
 				else 
 					mediator[j] = coll.arr[j];
 			}
 			Set result(mediator,result_size);
+			delete[] mediator;
 			return result;
 		/*for(int i(0); i < size; i++)
 			for(int j(0); j < coll.size; j++)
@@ -62,11 +62,9 @@ namespace SET
 	
 	}
 		
-	
-	
 	std::ostream& operator<<(std::ostream& os, const Set& v) {
 		for(int i(0); i < v.size; i++)
-			os << v.arr[i];
+			os << v.arr[i] << " ";
 		return os;
 	}
 

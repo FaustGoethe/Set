@@ -13,7 +13,7 @@ namespace SET
 	public:
 		explicit Set();
 		explicit Set(int*,int);
-		explicit Set(const Set&);
+		Set(Set&);
 		
 		bool crossing(const Set&); // Пересечение множеств
 		Set collaboration(const Set&);

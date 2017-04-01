@@ -1,1 +1,3 @@
-﻿LINK : fatal error LNK1168: не удается открыть C:\Users\Кирилл\Desktop\C++\Set\Set\Debug\Set.exe для записи
+﻿  Set.cpp
+  Set.vcxproj -> C:\Users\Кирилл\Desktop\C++\Set\Set\Debug\Set.exe
+  Set.vcxproj -> C:\Users\Кирилл\Desktop\C++\Set\Set\Debug\Set.pdb (Partial PDB)
