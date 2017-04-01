@@ -1,3 +1,8 @@
 ﻿  Set.cpp
+  List.cpp
+  Создание кода...
+c:\users\кирилл\desktop\c++\set\set\set\list.cpp(79): warning C4715: SLL::List::push: значение возвращается не при всех путях выполнения
+  Пропуск... (изменения не обнаружены)
+  Main.cpp
   Set.vcxproj -> C:\Users\Кирилл\Desktop\C++\Set\Set\Debug\Set.exe
   Set.vcxproj -> C:\Users\Кирилл\Desktop\C++\Set\Set\Debug\Set.pdb (Partial PDB)
