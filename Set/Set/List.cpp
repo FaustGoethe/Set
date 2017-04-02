@@ -8,6 +8,11 @@ namespace SLL
 	List::List(const List& v){
 		begin = v.begin;
 	}
+	List::List(const int* arr, const int size) {
+		begin = NULL;
+		for (int i(0); i < size; i++)
+			push_front(arr[i]);
+	}
 	List::~List(){
 		if (begin == NULL)
 			return;

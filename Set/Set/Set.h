@@ -22,25 +22,13 @@ namespace SET
 		Set collaboration(const Set&) const; // Объединение множеств
 		
 		bool operator==(Set&)const;
-		int operator[](size_t) ;
+		int operator[](size_t);
+		bool operator>(const Set&)const;
+		bool operator<(const Set&)const;
 
 		friend std::ostream& operator<<(std::ostream&, const Set&);
 	};
 
-	class bad_ratio
-	{
-	private:
-		std::string bug_description;
-		size_t bug_index;
-	public:
-		bad_ratio(std::string& error_name, size_t error_ratio) :bug_description(error_name), bug_index(error_ratio) {};
-		inline std::string& what_name() {
-			return bug_description;
-		}
-		inline size_t what_index() {
-			return bug_index;
-		}
-	};
 }
 using namespace SET;
 #endif

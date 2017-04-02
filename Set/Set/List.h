@@ -39,6 +39,7 @@ namespace SLL
 	public:
 		List();
 		List(const List&);
+		List(const int*,const int);
 		~List();
 
 		List& push(const size_t); // Добавка элемента n значения в список

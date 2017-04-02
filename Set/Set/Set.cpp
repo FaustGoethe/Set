@@ -2,16 +2,15 @@
 
 namespace SET
 {
-	Set::Set() 
-	{
-	}
-	Set::Set(int* arr1, int length) {
-		for (int i(0); i < length; i++)
-			set.push(arr1[i]);
-	}
+	Set::Set():set(){};
+	Set::Set(int* arr1, int length):set(arr1,length) {};
 	Set::Set(Set& cp) {
 		set.~List();
 		set = cp.set;
+	}
+	Set::Set(const List& vv) {
+		set.~List();
+		set = vv;
 	}
 	Set::~Set() 
 	{
@@ -19,9 +18,10 @@ namespace SET
 
 	bool Set::crossing(const Set& insp)const  {
 		bool ret = false;
-		size_t size = set.size();
-		for (size_t i(0); i < size; i++)
-			for (size_t j(0); j < insp.set.size(); j++)
+		size_t length = set.size();
+
+		for (size_t i(1); i <= length; i++)
+			for (size_t j(1); j <= insp.set.size(); j++)
 				if (set[i].key == insp.set[j].key) {
 					std::cout << set[i] << std::endl;
 					ret = true;
@@ -70,11 +70,22 @@ namespace SET
 		delete[] ret;
 		return true;
 	}
+	
+	bool Set::operator>(const Set& vv) const{
+		if(std::abs(set.minimum_value())+std::abs(set.maximum_value()) > std::abs(vv.set.minimum_value()) + std::abs(vv.set.maximum_value()))
+			return true;
+		return false;
+	}
+	bool Set::operator<(const Set& vv) const {
+		if (std::abs(set.minimum_value()) + std::abs(set.maximum_value()) < std::abs(vv.set.minimum_value()) + std::abs(vv.set.maximum_value()))
+			return true;
+		return false;
+	}
 
-	int Set::operator[](size_t ratio){
+
+	int Set::operator[](size_t ratio) {
 		return set[ratio].key;
 	}
-		
 	std::ostream& operator<<(std::ostream& os, const Set& v) {
 		List::list* temp = v.set._begin();
 		while (temp != NULL)
