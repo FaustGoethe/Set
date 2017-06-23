@@ -42,7 +42,7 @@ namespace SLL
 		List(const int*,const int);
 		~List();
 
-		List& push(const size_t); // Добавка элемента n значения в список
+		List& push(const int); // Добавка элемента n значения в список
 		List& remove(const size_t); // Удаление элемента из списка по значению
 		int remove_at_index(const size_t); // Удаление элемента из списка по индексу 
 		List& push_back(const size_t); // Добавка элемента в конец списка
@@ -59,6 +59,7 @@ namespace SLL
 		inline list* _begin()const{ // Вернуть начало
 			return begin;
 		}
+		list* _end()const;
 
 		List& key_sort_bubble(); // Сортировка пузырьком по значению
 		List& key_sort_reverse_bubble(); // Обратная сортировка пузырьком по значению

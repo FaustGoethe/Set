@@ -15,9 +15,16 @@ namespace SET
 		Set();
 		Set(int*,int);
 		Set(const List&);
-		Set(Set&);
-		~Set();
+		Set(const Set&);
+		Set(int, int);
 		
+		int _left()const;
+		int _right()const;
+
+		inline size_t size() const {
+			return set.size();
+		}
+
 		bool crossing(const Set&) const; // Пересечение множеств
 		Set collaboration(const Set&) const; // Объединение множеств
 		
@@ -25,6 +32,7 @@ namespace SET
 		int operator[](size_t);
 		bool operator>(const Set&)const;
 		bool operator<(const Set&)const;
+		operator int*() const;
 
 		friend std::ostream& operator<<(std::ostream&, const Set&);
 	};

@@ -5,16 +5,12 @@
 
 int main(int argc, char* argv[]) {
 	setlocale(LC_ALL, "Russian");
-	
-	/*int ar[3] = { 12,5,4 };
-	int ar1[3] = { 4,12,5 };
-	Set a(ar, 3);
-	Set a1(ar1, 3);
-	std::cout.setf(std::ios_base::boolalpha);
-	if(a == a1)
-		std::cout <<  true;
-	else 
-		std::cout << false;*/
+	Set a;
+	Set b(12,16);
+
+	int* arr = a;
+	for (int i(0); i < a.size(); i++)
+		std::cout << arr[i] << std::endl;
 	_getch();
 	return 0;
 }

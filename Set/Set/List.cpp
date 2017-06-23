@@ -16,7 +16,7 @@ namespace SLL
 	List::~List(){
 		if (begin == NULL)
 			return;
-		std::ofstream fout;
+		/*std::ofstream fout;
 		list* print = begin;
 		std::string file_name;
 
@@ -30,7 +30,7 @@ namespace SLL
 			fout << print->value.key << std::endl;
 			print = print->next;
 		}
-		fout << print->value.key;
+		fout << print->value.key;*/
 
 		list* p = begin;
 		list* t;
@@ -43,7 +43,24 @@ namespace SLL
 		begin = NULL;
 	}
 
-	List& List::push(const size_t push_value){
+	List::list* List::_end()const {
+		list* ret = NULL;
+		
+		if (begin == NULL)
+			return ret;
+
+		list* p = begin;
+		while (p)
+		{
+			if (p->next == NULL) {
+				ret = p;
+				return ret;
+			}
+			p = p->next;
+		}
+	}
+
+	List& List::push(const int push_value){
 		list* ins = new list; // Добавляемый элемент
 		ins->value.key = push_value;
 		ins->next = NULL;

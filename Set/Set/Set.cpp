@@ -3,8 +3,8 @@
 namespace SET
 {
 	Set::Set():set(){};
-	Set::Set(int* arr1, int length):set(arr1,length) {};
-	Set::Set(Set& cp) {
+	Set::Set(int* arr1, int length) :set(arr1, length) {};
+	Set::Set(const Set& cp) {
 		set.~List();
 		set = cp.set;
 	}
@@ -12,18 +12,35 @@ namespace SET
 		set.~List();
 		set = vv;
 	}
-	Set::~Set() 
-	{
+	Set::Set(int left_limit, int right_limit) {
+		if (left_limit >= right_limit)
+			std::swap(left_limit, right_limit);
+		for (int i = left_limit; i <= right_limit; i++) {
+			if (i == 0)
+				continue;
+			set.push(i);
+		}
 	}
 
-	bool Set::crossing(const Set& insp)const  {
+	int Set::_left()const {
+		if (set._begin() == NULL)
+			throw std::runtime_error("Begin == NULL");
+		return set._begin()->value.key;
+	}
+	int Set::_right()const {
+		if (set._end() == NULL)
+			throw std::runtime_error("Begin == End == NULL");
+		return set._end()->value.key;
+	}
+
+	bool Set::crossing(const Set& insp)const {
 		bool ret = false;
 		size_t length = set.size();
 
 		for (size_t i(1); i <= length; i++)
 			for (size_t j(1); j <= insp.set.size(); j++)
 				if (set[i].key == insp.set[j].key) {
-					std::cout << set[i] << std::endl;
+					std::cout << set[i] << " ";
 					ret = true;
 				}
 		return ret;
@@ -81,18 +98,21 @@ namespace SET
 			return true;
 		return false;
 	}
+	Set::operator int*() const {
+		const int N = set.size();
+		int* ret = new int[N];
 
+		for (int i(0); i < N; i++)
+			ret[i] = set[i + 1].key;
+		return ret;
+	}
 
 	int Set::operator[](size_t ratio) {
 		return set[ratio].key;
 	}
 	std::ostream& operator<<(std::ostream& os, const Set& v) {
-		List::list* temp = v.set._begin();
-		while (temp != NULL)
-		{
-			os << temp->value.key << " ";
-			temp = temp->next;
-		}
+		for (int i(1); i <= v.set.size(); i++)
+			os << v.set[i].key << " ";
 		return os;
 	}
 }
