@@ -18,22 +18,21 @@ namespace SET
 		Set(const Set&);
 		Set(int, int);
 		
-		int _left()const;
-		int _right()const;
+		int _left()const; // Левая граница множества
+		int _right()const; // Правая граница множества
 
 		inline size_t size() const {
 			return set.size();
-		}
+		} // Размер множества
 
 		bool crossing(const Set&) const; // Пересечение множеств
-		Set collaboration(const Set&) const; // Объединение множеств
 		
-		bool operator==(Set&)const;
-		int operator[](size_t);
-		bool operator>(const Set&)const;
-		bool operator<(const Set&)const;
-		operator int*() const;
+		bool operator==(Set&) const;
+		Set& operator+(const Set&); // Объединение множеств
 
+		operator int*() const;
+		int operator[](int) const;
+		int operator[](int);
 		friend std::ostream& operator<<(std::ostream&, const Set&);
 	};
 

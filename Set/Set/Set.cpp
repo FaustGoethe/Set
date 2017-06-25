@@ -35,7 +35,7 @@ namespace SET
 
 	bool Set::crossing(const Set& insp)const {
 		bool ret = false;
-		size_t length = set.size();
+		size_t length = size();
 
 		for (size_t i(1); i <= length; i++)
 			for (size_t j(1); j <= insp.set.size(); j++)
@@ -44,26 +44,6 @@ namespace SET
 					ret = true;
 				}
 		return ret;
-	}
-	Set Set::collaboration(const Set& coll)const {
-		int result_size = set.size() + coll.set.size();
-		int* mediator = new int[result_size];
-
-		for (int i(0); i < result_size; i++)
-			mediator[i] = 0;
-
-		for (size_t i(0); i < set.size(); i++)
-			mediator[i] = set[i].key;
-
-		int i(0);
-		for (int j(set.size()); j < result_size; j++) {
-			mediator[j] = coll.set[i].key;
-			i++;
-		}
-
-		Set result(mediator, result_size);
-		delete[] mediator;
-		return result;
 	}
 
 	bool Set::operator==(Set& vv)const {
@@ -87,17 +67,18 @@ namespace SET
 		delete[] ret;
 		return true;
 	}
+	Set& Set::operator+(const Set& vv) {
+		for (int i(1); i <= vv.size(); i++) 
+			set.push(vv[i]);
+
+		for(int i(1); i <= size(); i++)
+			for (int j(1); j < i; j++) {
+				if (set[i].key == set[j].key)
+					set.remove(set[j].key);
+			}
+		return *this;
+	}
 	
-	bool Set::operator>(const Set& vv) const{
-		if(std::abs(set.minimum_value())+std::abs(set.maximum_value()) > std::abs(vv.set.minimum_value()) + std::abs(vv.set.maximum_value()))
-			return true;
-		return false;
-	}
-	bool Set::operator<(const Set& vv) const {
-		if (std::abs(set.minimum_value()) + std::abs(set.maximum_value()) < std::abs(vv.set.minimum_value()) + std::abs(vv.set.maximum_value()))
-			return true;
-		return false;
-	}
 	Set::operator int*() const {
 		const int N = set.size();
 		int* ret = new int[N];
@@ -107,12 +88,17 @@ namespace SET
 		return ret;
 	}
 
-	int Set::operator[](size_t ratio) {
+	int Set::operator[](int ratio) {
+		return set[ratio].key;
+	}
+	int Set::operator[](int ratio)const {
 		return set[ratio].key;
 	}
 	std::ostream& operator<<(std::ostream& os, const Set& v) {
+		os << "[";
 		for (int i(1); i <= v.set.size(); i++)
-			os << v.set[i].key << " ";
+			os << v.set[i].key << ", ";
+		os << "]";
 		return os;
 	}
 }
