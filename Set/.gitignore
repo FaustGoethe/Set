@@ -1,0 +1,7 @@
+Debug/
+.vs/
+Set/Debug/
+
+*.sln
+*.filters
+*.vcxproj
